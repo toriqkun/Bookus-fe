@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@media (max-width: 450px) {
+  .login {
+    width: 358px;
+  }
+  .login img {
+    width: 14.5rem;
+  }
+  .register {
+    width: 358px;
+    padding-bottom: 2.8rem;
+  }
+  .register img {
+    width: 11rem;
+  }
+  .register input {
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
+  }
+  .register button {
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
+  }
+}
