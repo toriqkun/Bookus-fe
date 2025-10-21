@@ -11,8 +11,8 @@ export default function useAuth(redirect = true) {
   useEffect(() => {
     async function fetchUser() {
       try {
-        const res = await api.get("/auth/me");
-        setUser(res.data.user);
+        const res = await api.get("/auth/profile");
+        setUser(res.data.user || res.data);
       } catch (err) {
         if (redirect) router.replace("/login");
       } finally {
@@ -22,5 +22,5 @@ export default function useAuth(redirect = true) {
     fetchUser();
   }, [router, redirect]);
 
-  return { user, loading };
+  return { user, loading, setUser };
 }

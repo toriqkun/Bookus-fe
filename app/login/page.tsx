@@ -23,7 +23,7 @@ export default function LoginPage() {
 
       if (res.status === 200) {
         console.log("Login sukses:", res.data);
-        router.push("/dashboard");
+        router.push("/home");
       }
     } catch (err: any) {
       const msg = err.response?.data?.message || "Incorrect email or password";
@@ -34,17 +34,17 @@ export default function LoginPage() {
   return (
     <main className="flex justify-center items-center h-screen bg-gradient-to-br from-purple-200 via-pink-100 to-blue-100">
       <form onSubmit={handleLogin} className="login bg-gray-100 shadow-lg rounded-xl w-96 px-7 pt-7 pb-15">
-        <img src="/4.svg" alt="SLOTIFY" className="w-65 mx-auto mb-3" />
+        <img src="/1.gif" alt="SLOTIFY" className="w-65 mx-auto mb-3" />
         <h1 className="text-3xl font-semibold text-purple-600 mb-1">Login</h1>
         <p className="text-lg mb-3">Sign in to continue</p>
 
         {/* Email */}
         <div className="mb-5 relative">
-          <Mail className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+          <Mail className="absolute right-3 top-1/2 -translate-y-1/2 text-purple-400" size={18} />
           <input
             type="email"
             placeholder="Email"
-            className="text-gray-700 rounded-md border border-gray-400 p-2 pr-9 w-full focus:outline-none focus:border-purple-800"
+            className="text-gray-700 rounded-md border border-purple-400 p-2 pr-9 w-full focus:outline-none focus:border-purple-600"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -52,11 +52,11 @@ export default function LoginPage() {
 
         {/* Password */}
         <div className="mb-3 relative">
-          <Lock className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+          <Lock className="absolute right-3 top-1/2 -translate-y-1/2 text-purple-400" size={18} />
           <input
             type="password"
             placeholder="Password"
-            className="text-gray-700 rounded-md border border-gray-400 p-2 pr-9 w-full focus:outline-none focus:border-purple-800"
+            className="text-gray-700 rounded-md border border-purple-400 p-2 pr-9 w-full focus:outline-none focus:border-purple-600"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />

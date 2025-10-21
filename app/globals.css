@@ -1,6 +1,44 @@
 @import "tailwindcss";
 
 @media (max-width: 450px) {
+  .forgot{
+    width: 358px;
+  }
+  .forgot img{
+    width: 230px;
+  }
+  .forgot h1{
+    font-size: 22px;
+  }
+  .forgot input{
+    padding-bottom: 5px;
+    padding-top: 5px;
+  }
+  .forgot button{
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin-top: 7px;
+    font-size: 15px;
+  }
+  .reset{
+    width: 358px;
+  }
+  .reset img{
+    width: 230px;
+  }
+  .reset h1{
+    font-size: 22px;
+  }
+  .reset input{
+    padding-bottom: 5px;
+    padding-top: 5px;
+  }
+  .reset button{
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin-top: 7px;
+    font-size: 15px;
+  }
   .login {
     width: 358px;
   }
@@ -22,4 +60,5 @@
     padding-top: 0.35rem;
     padding-bottom: 0.35rem;
   }
+  
 }

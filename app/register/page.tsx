@@ -53,8 +53,23 @@ export default function RegisterPage() {
 
       setShowModal(true);
     } catch (err: any) {
-      const msg = err.response?.data?.message || "Failed to register";
-      toast.error(msg);
+      if (err.response && err.response.status === 400) {
+        const data = err.response.data;
+        let errorMessage = "Failed to register: Bad Request";
+
+        if (data.message) {
+          errorMessage = data.message;
+        } else if (data.errors && Array.isArray(data.errors) && data.errors.length > 0) {
+          errorMessage = data.errors[0];
+        }
+
+        setSubmitError(errorMessage)
+        toast.error(errorMessage);
+      } else {
+        const msg = err.response?.data?.message || "Internal server error";
+        setSubmitError(msg)
+        toast.error(msg);
+      }
     }
   };
 
@@ -67,7 +82,7 @@ export default function RegisterPage() {
   return (
     <main className="flex justify-center items-center h-screen bg-gradient-to-br from-purple-200 via-pink-100 to-blue-100">
       <form onSubmit={handleRegister} className="register bg-gray-100 rounded-xl w-96 px-7 pt-7 pb-15 shadow-xl">
-        <img src="/5.svg" alt="SLOTIFY" className="w-50 mx-auto mb-3" />
+        <img src="/2.gif" alt="SLOTIFY" className="w-50 mx-auto mb-3" />
         <h1 className="text-2xl font-semibold text-purple-600">Register</h1>
         <p className="text-md mb-3">Sign up to continue</p>
 
@@ -122,7 +137,7 @@ export default function RegisterPage() {
         })}
 
         {/* Submit Error */}
-        <div className="relative">{submitError && <p className="text-red-500 absolute top-[-1px] left-1 text-xs">{submitError}</p>}</div>
+        <div className="relative">{submitError && <p className="text-red-500 absolute top-[-5px] left-1 text-xs">{submitError}</p>}</div>
 
         {/* Submit */}
         <button type="submit" className="bg-purple-500 hover:bg-purple-600 text-white mt-5 px-4 py-2 rounded-full w-full cursor-pointer">
@@ -131,18 +146,21 @@ export default function RegisterPage() {
 
         <p className="mt-3 text-sm text-center text-gray-400">
           Already have an account?
-          <a href="/login" className="text-purple-600 hover:underline">
+          <a href="/login" className="ml-1 text-purple-600 hover:underline">
             Sign in
           </a>
         </p>
       </form>
 
       {showModal && (
-        <div className="fixed inset-0  bg-black/40 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center px-5 z-50">
           <div className="bg-white rounded-xl shadow-lg p-6 w-110 text-center">
-            <CircleCheckBig size={120} className="text-green-600 text-center items-center mx-auto mb-2"/>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-3">Success!</h2>
-            <p className="text-gray-600 mb-4">Check your email to confirm your account.</p>
+            <CircleCheckBig
+              className="text-green-600 text-center mx-auto mb-2 
+             w-23 h-23 sm:w-28 sm:h-28"
+            />
+            <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-3">Success!</h2>
+            <p className="text-gray-600 mb-4 text-md sm:text-lg">Check your email to confirm your account.</p>
             <button
               onClick={() => {
                 setShowModal(false);

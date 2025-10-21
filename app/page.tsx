@@ -1,9 +1,9 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/app/components/ui/button";
+import { Input } from "@/app/components/ui/input";
+import { Textarea } from "@/app/components/ui/textarea";
 import { Mail, Phone, Instagram, Twitter, Facebook } from "lucide-react";
-import Navbar from "../components/Navbar";
+import Navbar from "../app/components/Navbar";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -11,26 +11,10 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-200 via-pink-100 to-blue-100 flex flex-col">
       {/* Navbar */}
-      {/* <header className="fixed top-0 left-0 w-full bg-white/60 backdrop-blur-md flex flex-col md:flex-row items-center justify-between px-6 md:px-10 py-3 shadow z-50 gap-3 md:gap-0">
-        <div>
-          <img src="/brand.png" alt="SLOTIFY" className="w-20" />
-        </div>
-        <div className="flex gap-3 md:gap-4">
-          <Link href="/login" className="rounded-md py-2 px-4 border border-purple-600 text-sm md:text-base">
-            Sign In
-          </Link>
-          <Link href="/register" className="bg-purple-600 text-white rounded-md py-2 px-4 md:px-5 hover:bg-purple-700 text-sm md:text-base">
-            Sign Up
-          </Link>
-        </div>
-      </header> */}
       <Navbar />
 
       {/* Hero */}
-      <main id="hero" className="scroll-mt-25 flex flex-col items-center text-center mt-28 md:mt-32 px-4 md:px-6">
-        <motion.p initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-xs md:text-sm text-purple-600 font-semibold tracking-wide">
-          DIGITAL LIBRARY
-        </motion.p>
+      <main id="hero" className="scroll-mt-25 flex flex-col items-center text-center mt-28 md:mt-30 px-4 md:px-6">
 
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
@@ -54,14 +38,14 @@ export default function HomePage() {
           <Link href="/login" className="bg-purple-600 text-white rounded-md hover:bg-purple-700 px-6 py-2 cursor-pointer text-center w-full sm:w-auto">
             Get Started
           </Link>
-          <Link href="/services" className="rounded-md px-6 py-2 border border-purple-600 text-center w-full sm:w-auto">
+          <Link href="/library" className="rounded-md px-6 py-2 border border-purple-600 text-center w-full sm:w-auto">
             Explore Library
           </Link>
         </motion.div>
       </main>
 
       {/* Stats */}
-      <section className="mt-20 px-6 md:px-10 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+      <section className="mt-15 px-6 md:px-10 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
         {[
           { title: "Total Books", value: "12,500+", note: "+5% from last month" },
           { title: "Active Readers", value: "8,230", note: "+12% this month" },

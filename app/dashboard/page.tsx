@@ -1,10 +1,13 @@
 "use client";
+
 import { useRouter } from "next/navigation";
 import useAuth from "@/app/utils/useAuth";
 import api from "@/app/utils/axios";
+import AdminDashboard from "@/app/components/AdminDashboard";
+import UserDashboard from "@/app/components/UserDashboard";
 
 export default function DashboardPage() {
-  const { user, loading } = useAuth();
+  const { user } = useAuth();
   const router = useRouter();
 
   const handleLogout = async () => {
@@ -12,29 +15,23 @@ export default function DashboardPage() {
       await api.post("/auth/logout");
       router.push("/login");
     } catch (err) {
-      console.error("Logout gagal", err);
+      console.error("Logout gagal:", err);
     }
   };
 
-  if (loading) {
-    return <div className="flex h-screen items-center justify-center">Loading...</div>;
+  if (!user) return null;
+
+  if (user.role === "ADMIN") {
+    return <AdminDashboard user={user} />;
   }
 
-  if (!user) {
-    return null;
+  if (user.role === "USER") {
+    return <UserDashboard user={user} />;
   }
 
   return (
-    <main className="flex h-screen items-center justify-center bg-gradient-to-br from-purple-200 via-pink-100 to-blue-100">
-      <div className="bg-white p-10 rounded-xl shadow-xl text-center">
-        <h1 className="text-3xl font-bold text-purple-600">Welcome, {user.name} 🎉</h1>
-        <p className="mt-2 text-gray-500">Ini halaman dashboard</p>
-
-        {/* Tombol Logout */}
-        <button onClick={handleLogout} className="mt-6 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">
-          Logout
-        </button>
-      </div>
-    </main>
+    <div className="flex h-screen items-center justify-center">
+      <p className="text-gray-500">Role tidak dikenali: {user.role}</p>
+    </div>
   );
 }
